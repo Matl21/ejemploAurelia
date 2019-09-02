@@ -1,0 +1,56 @@
+<template>
+  <!-- Titulo en app.js asi mandamos a llamar datos desde nuestra clase -->
+
+  <!-- APLICAREMOS UN DISEÑO BASICO CON  BOOTSTRAP -->
+  <div id="container">
+    <h1 class="tittle bg-warning text-center">${titulo}</h1> 
+  
+    <!-- Creamos un formulario con el binde al metodo creado para un cliente -->
+    <form submit.trigger="addCliente()" class="form form-control">
+
+      <div class="container bg-secondary mt-3">
+
+        <!-- Formulario con su campos -->
+          <label for="nombres" class="mrg-spr-ex">Nombres:</label>
+          <input type="text" name="nombres" placeholder="Escriba su nombre" 
+          class="form-control " required value.bind="nombresCliente">
+  
+          <label for="email" class="mrg-spr-ex">Email:</label>
+          <input type="text" name="email" placeholder="Escriba su email" 
+          class="form-control " required value.bind="emailCliente"> 
+  
+          <label for="edad" class="mrg-spr-ex">Edad:</label>
+          <input type="number" name="edad" placeholder="Ingrese su edad" 
+          class="form-control mb-3" required value.bind="edadCliente">
+          
+          <div class="container-fluid">
+            <!-- Botonos que ingresar o cancela los datos -->
+              <input type="submit"  class="btn btn-success mb-3" value="Guardar" name="aceptar">
+
+              <button type="reset" class="btn btn-danger mb-3">Cancelar</button>
+          
+          </div>
+      </div>
+      
+      <!-- Tabla para mostrar lo datos ingresado en el formulario -->
+      <table class="table table-dark mt-5">
+          <tr>
+            <th>Nombres</th>
+            <th>Email</th>
+            <th>Edad</th>
+          </tr>
+          <!-- Generamos un bucle for para ingresar lo cliente que esta guardado en la arreglo -->
+          <tr repeat.for="client of clientes">
+            <td>${client.nombres}</td>
+            <td>${client.email}</td>
+            <td>${client.edad}</td>
+
+            <!-- Boton que se encarga de ejecutar el metodo para quitar un registro de cliente -->
+            <td><button click.trigger="removeCliente(client)">Quitar</button></td>
+          </tr>
+        </table>
+    </form>      
+  </div> 
+</template>
+
+
